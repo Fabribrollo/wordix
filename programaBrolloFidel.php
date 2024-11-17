@@ -65,27 +65,37 @@ $partida = jugarWordix("MELON", strtolower("MaJo"));
 //imprimirResultado($partida);
 
 
-
-/*
-do {
-    $opcion = ...;
-
+function SeleccionarOpcion(){
     
-    switch ($opcion) {
-        case 1: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 1
-
-            break;
-        case 2: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 2
-
-            break;
-        case 3: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
-
-            break;
+    do {
+        echo "ingrese una opcion\n
+        1) Jugar al wordix con una palabra elegida\n
+        2) Jugar al wordix con una palabra aleatoria\n
+        3) Mostrar una partida\n
+        4) Mostrar la primer partida ganadora\n
+        5) Mostrar resumen de Jugador\n
+        6) Mostrar listado de partidas ordenadas por jugador y por palabra\n
+        7) Agregar una palabra de 5 letras a Wordix\n
+        8) salir";
+        $opcion = trim(fgets(STDIN));
+    
         
-            //...
-    }
-} while ($opcion != X);
-*/
+        switch ($opcion) {
+            case 1: 
+                //completar qué secuencia de pasos ejecutar si el usuario elige la opción 1
+    
+                break;
+            case 2: 
+                //completar qué secuencia de pasos ejecutar si el usuario elige la opción 2
+    
+                break;
+            case 3: 
+                //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
+    
+                break;
+            
+                //...
+        }
+    } while ($opcion != 8 && is_numeric($opcion) && $opcion >=1 && $opcion <=7);
+}
+
