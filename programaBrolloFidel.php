@@ -42,8 +42,8 @@ function cargarPartidas(){
     $coleccionPartidas[6] = ["palabraWordix"=> "FUEGO","jugador" =>"juan", "intentos" => 0 , "puntaje" => 0];
     $coleccionPartidas[7] = ["palabraWordix"=> "FUEGO","jugador" =>"juan", "intentos" => 0 , "puntaje" => 0];
     $coleccionPartidas[8] = ["palabraWordix"=> "FUEGO","jugador" =>"juan", "intentos" => 0 , "puntaje" => 0];
-    $coleccionPartidas[9] = ["palabraWordix"=> "FUEGO","jugador" =>"juan", "intentos" => 0 , "puntaje" => 0];
-    $coleccionPartidas[10] = ["palabraWordix"=> "FUEGO","jugador" =>"juan", "intentos" => 0 , "puntaje" => 0];
+    $coleccionPartidas[9] = ["palabraWordix"=> "MUJER","jugador" =>"juan", "intentos" => 5 , "puntaje" => 11];
+    $coleccionPartidas[10] = ["palabraWordix"=> "BARCO","jugador" =>"rodri", "intentos" => 5, "puntaje" => 11];
 
 
 }
