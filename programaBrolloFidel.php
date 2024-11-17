@@ -45,7 +45,7 @@ function cargarPartidas(){
     $coleccionPartidas[9] = ["palabraWordix"=> "MUJER","jugador" =>"majo", "intentos" => 5 , "puntaje" => 11];
     $coleccionPartidas[10] = ["palabraWordix"=> "BARCO","jugador" =>"rodri", "intentos" => 5, "puntaje" => 11];
 
-
+    return $coleccionPartidas;
 }
 
 /**************************************/
