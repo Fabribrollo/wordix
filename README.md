@@ -16,5 +16,5 @@ Profesores:
 
 # Integrantes del Grupo
 
-**Fabrizio Brollo** - Legajo 5532 - mail: fabrizio.brollo@est.fi.uncoma.edu.ar - Github: Fabribrollo
+**Fabrizio Brollo** - Legajo FAI-5532 - mail: fabrizio.brollo@est.fi.uncoma.edu.ar - Github: Fabribrollo
 **Fidel Pizarro**  - Legajo FAI-5554 - mail: fidelpizarro11@gmail.com - Github: fidelpizarro3
