@@ -50,6 +50,11 @@ function cargarPartidas(){
 
     return $coleccionPartidas;
 }
+/**
+ * 4)
+ * leerPalabra5Letras() en wordix.php
+ */
+
 
 /** 5)
  * solicitarNumeroEntre() en wordix.php
@@ -66,6 +71,21 @@ function agregarPalabra($coleccionPalabras, $palabra){
     return $coleccionPalabras;
 }
 
+function mostrarPartida(){
+    $numeroDePartidas = count(cargarPartidas());
+    echo "Ingrese el numero de partida para mostrar (1-" . $numeroDePartidas . ")";
+    $partidaElegida = trim(fgets(STDIN)) - 1;
+    echo "\n*******************************\n";
+    echo "Partida WORDIX " . $partidaElegida + 1 . " palabra " . cargarPartidas()[$partidaElegida]["palabraWordix"]. ". \n";
+    echo "Jugador: " . cargarPartidas()[$partidaElegida]["jugador"]. ". \n";
+    echo "Puntaje: " . cargarPartidas()[$partidaElegida]["puntaje"] . ". \n";
+    if(cargarPartidas()[$partidaElegida]["puntaje"] == 0){
+        echo "Intento: No adivinó la palabra. \n";
+    }else{
+        echo "Intento: Adivinó la palabra en " . cargarPartidas()[$partidaElegida]["intentos"] . " intentos.". " \n";
+    }
+    echo "\n*******************************\n";
+}
  
 
 
