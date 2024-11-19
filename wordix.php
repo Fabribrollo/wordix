@@ -27,7 +27,11 @@ const ESTADO_LETRA_PERTENECE = "pertenece";
 /**************************************/
 
 /**
- *  ****COMPLETAR*****
+ *  Funcion que solicita como parametros un valor minimo y maximo, solicita un numero y verifica si esta dentro del rango de estos valores.
+ *  Si la condicion se cumple, devuelve el numero, sino, solicita otro numero.
+ * @param INT $min
+ * @param INT $min
+ * @return INT $numero
  */
 function solicitarNumeroEntre($min, $max)
 {
@@ -120,7 +124,8 @@ function escribirSegunEstado($texto, $estado)
 }
 
 /**
- * ****COMPLETAR*****
+ * Funcion que da la bienvenida al usuario ingresado como parametro.
+ * @param STRING $usuario
  */
 function escribirMensajeBienvenida($usuario)
 {
@@ -133,7 +138,9 @@ function escribirMensajeBienvenida($usuario)
 
 
 /**
- * ****COMPLETAR*****
+ * Recibe como parametro una cadena y devuelve si sus caracteres son unicamente letras, retorna un valor booleano si es palabra o no.
+ * @param STRING $cadena
+ * @return BOOLEAN $esLetra
  */
 function esPalabra($cadena)
 {
