@@ -86,7 +86,29 @@ function mostrarPartida(){
     }
     echo "\n*******************************\n";
 }
- 
+
+
+function primerPartidaGanada()  {
+
+    echo "Ingrese el nombre de un jugador: ";
+    $nombreJugador = trim(fgets(STDIN));
+
+    //cargarPartidas()[coleccionPartidas]["nombre"] == $nombreJugador = false;
+    if (cargarPartidas()[$coleccionPartidas]["intentos"] > 0 && cargarPartidas()[$coleccionPartidas]["puntaje"] > 0){
+
+        while( $i < count(cargarPartidas())){
+            if (cargarPartidas()[$coleccionPartidas]["nombre"] == $nombreJugador){
+                echo "************************ \n";
+                echo "partida WORDIX " . "palabra " . cargarPartidas()[$coleccionPartidas["palabraWordix"]];
+                echo "puntaje: " . cargarPartidas()[$coleccionPartidas]["puntaje"];
+                echo "intento: " . cargarPartidas()[$coleccionPartidas]["intentos"];
+                echo "************************ \n";
+            }
+
+        }
+        
+    }
+}
 
 
 
