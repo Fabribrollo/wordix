@@ -120,7 +120,8 @@ function primerPartidaGanada()  {
 
 
 //Inicialización de variables:
-$partida = cargarPartidas();
+$partidas = cargarPartidas();
+$palabras = cargarColeccionPalabras();
 
 //Proceso:
 
@@ -132,7 +133,7 @@ $partida = cargarPartidas();
 /** 3)
  * Menu de opciones
  */
-function SeleccionarOpcion(){
+function seleccionarOpcion(){
     echo "ingrese una opcion\n
     1) Jugar al wordix con una palabra elegida\n
     2) Jugar al wordix con una palabra aleatoria\n
@@ -147,7 +148,7 @@ $opcion = solicitarNumeroEntre(1, 8);
 }
 
 do {
-    $opcion=SeleccionarOpcion();
+    $opcion=seleccionarOpcion();
     
     switch ($opcion) {
         case 1: 

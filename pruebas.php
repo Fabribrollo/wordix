@@ -135,7 +135,6 @@ function resumenJugador(){
     }
 }
 
-resumenJugador();
 
 function solicitarJugador(){
     echo "Ingrese el nombre de un jugador: ";
@@ -154,6 +153,30 @@ function solicitarJugador(){
     return $jugadorMinusculas;
 }
 
+function ordenarPartidas(){
+function compararPalabras($jugada1,$jugada2){
+    if($jugada1["jugador"] == $jugada2["jugador"]){
+        if($jugada1["palabraWordix"] == $jugada2["palabraWordix"]){
+            $orden = 0;
+        }
+        else if ($jugada1["palabraWordix"] < $jugada2["palabraWordix"]){
+            $orden = -1;
+        }
+        else $orden = 1;
+    }
+    else if ($jugada1["jugador"] < $jugada2["jugador"]){
+        $orden = -1;
+    }
+    else $orden = 1;
+
+    return $orden;
+}
+
+$arregloPalabras = cargarPartidas();
+uasort($arregloPalabras, 'compararPalabras');
+print_r ($arregloPalabras);
+
+}
 
 
 
