@@ -61,13 +61,8 @@ function primerPartidaGanada()  {
     $primeraGanada = true;
     $primeraGanadaIndice = -1;
     while( $i < count(cargarPartidas()) && $primeraGanada ){
-        
+        echo $i;
         if (cargarPartidas()[$i]["jugador"] == $nombreJugador && cargarPartidas()[$i]["intentos"] > 0 && cargarPartidas()[$i]["puntaje"] > 0){
-            // echo "************************ \n";
-            // echo "partida WORDIX " . "palabra " . cargarPartidas()[$i]["palabraWordix"];
-            // echo "puntaje: " . cargarPartidas()[$i]["puntaje"];
-            // echo "intento: " . cargarPartidas()[$i]["intentos"];
-            // echo "************************ \n";
             $primeraGanada = false;
             $primeraGanadaIndice = $i;
         }
@@ -76,4 +71,84 @@ function primerPartidaGanada()  {
     return $primeraGanadaIndice;
 }
 
-echo primerPartidaGanada();
+
+function resumenJugador(){
+    echo "Ingrese el nombre de un jugador: ";
+    $jugador = trim(fgets(STDIN));
+    $partidas = cargarPartidas();
+    $partidasJugador = 0;
+    $acumPuntaje = 0;
+    $acumVictorias = 0;
+    $unIntento = 0;
+    $dosIntentos = 0;
+    $tresIntentos = 0;
+    $cuatroIntentos = 0;
+    $cincoIntentos = 0;
+    $seisIntentos = 0;
+    $i = 0;
+
+    for ($i=0; $i < count($partidas); $i++) { 
+        if($partidas[$i]["jugador"] == $jugador){
+            $partidasJugador++;
+            $acumPuntaje = $acumPuntaje + $partidas[$i]["puntaje"] ;
+            if ($partidas[$i]["puntaje"] > 0){
+                $acumVictorias++;
+            }
+            if($partidas[$i]["puntaje"] > 0 && $partidas[$i]["intentos"] == 1){
+                $unIntento++;
+            }
+            if($partidas[$i]["puntaje"] > 0 && $partidas[$i]["intentos"] == 2){
+                $dosIntentos++;
+            }
+            if($partidas[$i]["puntaje"] > 0 && $partidas[$i]["intentos"] == 3){
+                $tresIntentos++;
+            }
+            if($partidas[$i]["puntaje"] > 0 && $partidas[$i]["intentos"] == 4){
+                $cuatroIntentos++;
+            }
+            if($partidas[$i]["puntaje"] > 0 && $partidas[$i]["intentos"] == 5){
+                $cincoIntentos;
+            }
+            if($partidas[$i]["puntaje"] > 0 && $partidas[$i]["intentos"] == 6){
+                $seisIntentos;
+            }
+
+        }
+    }
+    echo "\n*\n";
+    echo "Jugador : " . $jugador . "\n";
+    echo "Partidas : " . $partidasJugador . "\n";
+    echo "Puntaje Total: " . $acumPuntaje . "\n";
+    echo "Victorias: " . $acumVictorias . "\n";
+    echo "Porcentaje Victorias " . ($acumVictorias / $partidasJugador) * 100 . "\n";
+    echo "Adivinadas: " . "\n";
+        echo "----Intento 1: " . $unIntento . "\n";;
+        echo "----Intento 2: " . $dosIntentos . "\n";
+        echo "----Intento 3: " . $tresIntentos . "\n";
+        echo "----Intento 4: " . $cuatroIntentos . "\n";
+        echo "----Intento 5: " . $cincoIntentos . "\n";
+        echo "----Intento 6: " . $seisIntentos . "\n";
+    echo "*\n";
+
+}
+
+function solicitarJugador(){
+    echo "Ingrese el nombre de un jugador: ";
+    $jugador = trim(fgets(STDIN));
+    if(ctype_alpha($jugador[0])){
+        $jugadorMinusculas = strtolower($jugador);
+    }else{
+        while(!ctype_alpha($jugador[0])){
+            echo "Ingrese un nombre valido: ";
+            $jugador = trim(fgets(STDIN));
+            if(ctype_alpha($jugador[0])){
+                $jugadorMinusculas = strtolower($jugador);
+            }
+        }
+    }
+    return $jugadorMinusculas;
+}
+
+echo solicitarJugador()
+
+?>
