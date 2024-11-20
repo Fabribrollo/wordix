@@ -61,7 +61,7 @@ function primerPartidaGanada()  {
     $primeraGanada = true;
     $primeraGanadaIndice = -1;
     while( $i < count(cargarPartidas()) && $primeraGanada ){
-        echo $i;
+        
         if (cargarPartidas()[$i]["jugador"] == $nombreJugador && cargarPartidas()[$i]["intentos"] > 0 && cargarPartidas()[$i]["puntaje"] > 0){
             // echo "************************ \n";
             // echo "partida WORDIX " . "palabra " . cargarPartidas()[$i]["palabraWordix"];
