@@ -152,8 +152,7 @@ do {
     
     switch ($opcion) {
         case 1: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 1
-
+            
             break;
         case 2: 
             //completar qué secuencia de pasos ejecutar si el usuario elige la opción 2
@@ -164,6 +163,26 @@ do {
 
             break;
         
+        case 4: 
+            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
+
+            break;
+        
+        case 5: 
+            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
+
+            break;
+        
+        case 6: 
+            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
+
+            break;
+        
+        case 7: 
+            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
+
+            break;
+        
             //...
     }
-} while ($opcion != 8 && is_numeric($opcion) && $opcion >=1 && $opcion <=7);
+} while ($opcion != 8);
