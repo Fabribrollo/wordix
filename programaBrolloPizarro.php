@@ -114,17 +114,15 @@ function primerPartidaGanadaIndice()  {
     return $primeraGanadaIndice;
 }
 
-function primerPartidaGanada(){
-    echo "Ingrese el nombre de un jugador: ";
-    $nombreJugador = trim(fgets(STDIN));
+function primerPartidaGanada($indice){
     echo "\n*******************************\n";
-    echo "Partida WORDIX " . $partidaElegida + 1 . " palabra " . cargarPartidas()[$partidaElegida]["palabraWordix"]. ". \n";
-    echo "Jugador: " . cargarPartidas()[$partidaElegida]["jugador"]. ". \n";
-    echo "Puntaje: " . cargarPartidas()[$partidaElegida]["puntaje"] . ". \n";
-    if(cargarPartidas()[$partidaElegida]["puntaje"] == 0){
+    echo "Partida WORDIX " . $indice + 1 . " palabra " . cargarPartidas()[$indice]["palabraWordix"]. ". \n";
+    echo "Jugador: " . cargarPartidas()[$indice]["jugador"]. ". \n";
+    echo "Puntaje: " . cargarPartidas()[$indice]["puntaje"] . ". \n";
+    if(cargarPartidas()[$indice]["puntaje"] == 0){
         echo "Intento: No adivinó la palabra. \n";
     }else{
-        echo "Intento: Adivinó la palabra en " . cargarPartidas()[$partidaElegida]["intentos"] . " intentos.". " \n";
+        echo "Intento: Adivinó la palabra en " . cargarPartidas()[$indice]["intentos"] . " intentos.". " \n";
     }
     echo "\n*******************************\n";
 }
@@ -303,20 +301,19 @@ do {
             $palabrasUtilizadas[] = $indicePartida;
             print_r($palabrasUtilizadas);
             break;
+
         case 2: 
             echo "Ingrese su nombre: ";
             $nombreJugador = trim(fgets(STDIN));
             $partidaAleatoria = rand(0, count($palabras));
-            
-
             break;
+
         case 3: 
             mostrarPartida();
-
             break;
         
         case 4: 
-            echo primerPartidaGanada();
+            primerPartidaGanada(primerPartidaGanadaIndice());
             break;
         
         case 5: 
