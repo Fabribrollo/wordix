@@ -16,26 +16,6 @@
 //     return $coleccionPartidas;
 // }
 
-
-
-function mostrarPartida(){
-    $numeroDePartidas = count(cargarPartidas());
-    echo "Ingrese el numero de partida para mostrar (1-" . $numeroDePartidas . ")";
-    $partidaElegida = trim(fgets(STDIN)) - 1;
-    echo "\n*******************************\n";
-    echo "Partida WORDIX " . $partidaElegida + 1 . " palabra " . cargarPartidas()[$partidaElegida]["palabraWordix"]. ". \n";
-    echo "Jugador: " . cargarPartidas()[$partidaElegida]["jugador"]. ". \n";
-    echo "Puntaje: " . cargarPartidas()[$partidaElegida]["puntaje"] . ". \n";
-    if(cargarPartidas()[$partidaElegida]["puntaje"] == 0){
-        echo "Intento: No adivinó la palabra. \n";
-    }else{
-        echo "Intento: Adivinó la palabra en " . cargarPartidas()[$partidaElegida]["intentos"] . " intentos.". " \n";
-    }
-    echo "\n*******************************\n";
-}
-
-// mostrarPartida();
-
 function cargarPartidas(){
     $coleccionPartidas[0] = ["palabraWordix"=> "FUEGO","jugador" =>"juan", "intentos" => 0 , "puntaje" => 0];
     $coleccionPartidas[1] = ["palabraWordix"=> "YUYOS","jugador" =>"ariel", "intentos" => 1 , "puntaje" => 6];
@@ -53,6 +33,41 @@ function cargarPartidas(){
 }
 
 
+/** 6)
+ * 
+ */
+function mostrarPartida(){
+    $numeroDePartidas = count(cargarPartidas());
+    echo "Ingrese el numero de partida para mostrar (1-" . $numeroDePartidas . ")";
+    $partidaElegida = trim(fgets(STDIN)) - 1;
+    echo "\n*******************************\n";
+    echo "Partida WORDIX " . $partidaElegida + 1 . " palabra " . cargarPartidas()[$partidaElegida]["palabraWordix"]. ". \n";
+    echo "Jugador: " . cargarPartidas()[$partidaElegida]["jugador"]. ". \n";
+    echo "Puntaje: " . cargarPartidas()[$partidaElegida]["puntaje"] . ". \n";
+    if(cargarPartidas()[$partidaElegida]["puntaje"] == 0){
+        echo "Intento: No adivinó la palabra. \n";
+    }else{
+        echo "Intento: Adivinó la palabra en " . cargarPartidas()[$partidaElegida]["intentos"] . " intentos.". " \n";
+    }
+    echo "\n*******************************\n";
+}
+
+
+
+/** 7)
+ * Funcion que tiene como parametro un array de palabras y una palabra para agregar, retorna el array con la palabra añadida.
+ * @param float[] $coleccionPalabras
+ * @param $palabra
+ * @return array
+ */
+function agregarPalabra($coleccionPalabras, $palabra){
+    $coleccionPalabras[count($coleccionPalabras) + 1] = $palabra;
+    return $coleccionPalabras;
+}
+
+/**8)
+ * 
+ */
 function primerPartidaGanada()  {
     echo "Ingrese el nombre de un jugador: ";
     $nombreJugador = trim(fgets(STDIN));
@@ -71,6 +86,9 @@ function primerPartidaGanada()  {
 }
 
 
+/**9)
+ * 
+ */
 function resumenJugador(){
     echo "Ingrese el nombre de un jugador: ";
     $jugador = trim(fgets(STDIN));
@@ -135,8 +153,10 @@ function resumenJugador(){
     }
 }
 
-
-function solicitarJugador(){
+ /**10)
+  * 
+  */
+  function solicitarJugador(){
     echo "Ingrese el nombre de un jugador: ";
     $jugador = trim(fgets(STDIN));
     if(ctype_alpha($jugador[0])){
@@ -153,30 +173,46 @@ function solicitarJugador(){
     return $jugadorMinusculas;
 }
 
+/**11)
+ * 
+ */
 function ordenarPartidas(){
-function compararPalabras($jugada1,$jugada2){
-    if($jugada1["jugador"] == $jugada2["jugador"]){
-        if($jugada1["palabraWordix"] == $jugada2["palabraWordix"]){
-            $orden = 0;
+    function compararPalabras($jugada1,$jugada2){
+        if($jugada1["jugador"] == $jugada2["jugador"]){
+            if($jugada1["palabraWordix"] == $jugada2["palabraWordix"]){
+                $orden = 0;
+            }
+            else if ($jugada1["palabraWordix"] < $jugada2["palabraWordix"]){
+                $orden = -1;
+            }
+            else $orden = 1;
         }
-        else if ($jugada1["palabraWordix"] < $jugada2["palabraWordix"]){
+        else if ($jugada1["jugador"] < $jugada2["jugador"]){
             $orden = -1;
         }
         else $orden = 1;
+    
+        return $orden;
     }
-    else if ($jugada1["jugador"] < $jugada2["jugador"]){
-        $orden = -1;
+    
+    $arregloPalabras = cargarPartidas();
+    uasort($arregloPalabras, 'compararPalabras');
+    print_r ($arregloPalabras);
+    
     }
-    else $orden = 1;
 
-    return $orden;
-}
 
-$arregloPalabras = cargarPartidas();
-uasort($arregloPalabras, 'compararPalabras');
-print_r ($arregloPalabras);
 
-}
+
+
+
+
+
+
+
+
+
+
 
 
 
