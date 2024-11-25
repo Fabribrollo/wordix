@@ -61,7 +61,8 @@ function cargarPartidas(){
  */
 
 /** 6)
- * COMPLETAR
+ * esta funcion muestra la partida jugada dependiendo el numero que ingrese el usuario
+ * INT $numeroPartida, $partidaElegida
  */
 function mostrarPartida(){
     $numeroDePartidas = count(cargarPartidas());
@@ -85,16 +86,20 @@ function mostrarPartida(){
 /** 7)
  * Funcion que tiene como parametro un array de palabras y una palabra para agregar, retorna el array con la palabra añadida.
  * @param float[] $coleccionPalabras
- * @param $palabra
+ * @param  string $palabra
  * @return array
  */
 function agregarPalabra($coleccionPalabras, $palabra){
-    $coleccionPalabras[count($coleccionPalabras) + 1] = $palabra;
+    $coleccionPalabras[] = $palabra;
     return $coleccionPalabras;
 }
 
 /**8)
- * COMPLETAR
+ * esta funcion solicita el nombre de un jugador y devuelve el numero de indice de la primera partida ganada por el mismo, sino devuelve -1
+ * STRING $nombreJugador 
+ * INT $i, $primeraGanadaIndice
+ * BOOLEAN $priemraGanada
+ * @return INT 
  */
 function primerPartidaGanadaIndice()  {
     echo "Ingrese el nombre de un jugador: ";
@@ -113,7 +118,9 @@ function primerPartidaGanadaIndice()  {
 }
 
 /**
- * COMPLETAR
+ * esta funcion utiliza el indice de la funcion primerPartidaGanadaIndice() y muestra un resumen de la primera partida ganada por el jugador
+ * @param int $indice
+ * 
  */
 function primerPartidaGanada($indice){
     if($indice >= 0){
@@ -136,7 +143,10 @@ function primerPartidaGanada($indice){
 
 
 /**9)
- * 
+ * esta funcion solicita el nombre de un jugador y muestra el resumen de las partidas jugadas del mismo
+ * INT $partidasJugador, $acumPuntaje, $acumVictorias, $unIntento, $dosIntentos ,$tresIntentos ,$cuatroIntentos, $cincoIntentos, $seisIntentos, $i
+ *  float[] array $partidas
+ * STRING $jugador
  */
 function resumenJugador(){
     echo "Ingrese el nombre de un jugador: ";
@@ -197,7 +207,9 @@ function resumenJugador(){
 }
 
 /**10)
-  * 
+  * esta funcion solicita al usuario su nombre y si el nombre contiene numeros le solicita que ingrese un nombre valido
+    STRING $jugador
+    return STRING
   */
 function solicitarJugador(){
     echo "Ingrese el nombre de un jugador: ";
@@ -217,6 +229,9 @@ function solicitarJugador(){
 }
 
 /**11)
+ * uasort()=Ordena un array con una función de comparación definida por el usuario y mantiene la asociación de índices
+ * print_r()= Imprime información legible para humanos sobre una variable o array
+ * esta funcion ordena el arreglo de partidas alfabeticamente por nombre del jugador y por palabra jugada
  * 
  */
 function ordenarPartidas(){
@@ -315,6 +330,9 @@ function ordenarPartidas(){
     /**************************************/
     
 //Declaración de variables:
+/**
+ * INT $opcion
+ */
 
 
 //Inicialización de variables:
@@ -330,7 +348,8 @@ $palabrasUtilizadas = [];
 
 
 /** 3)
- * Menu de opciones
+ * esta funcion es un Menu de opciones, dependiendo el numero de opcion que ingrese el usuario, se ejecuta lo que quiera hacer
+ * INT $opcion, 
  */
 function seleccionarOpcion(){
     echo "ingrese una opcion\n
@@ -392,16 +411,14 @@ do {
             break;
         
         case 6: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
-
+            ordenarPartidas(); 
             break;
         
         case 7: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
-
+            $palabras = agregarPalabra($palabras,leerPalabra5Letras());
+            print_r($palabras);
             break;
         
-            //...
     }
 } while ($opcion != 8);
 
