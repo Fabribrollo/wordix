@@ -67,7 +67,8 @@ function cargarPartidas(){
 function mostrarPartida(){
     $numeroDePartidas = count(cargarPartidas());
     echo "Ingrese el numero de partida para mostrar (1-" . $numeroDePartidas . ")";
-    $partidaElegida = trim(fgets(STDIN)) - 1;
+    $numeroPartida = solicitarNumeroEntre(1,$numeroDePartidas);
+    $partidaElegida = $numeroPartida -1;
     echo "\n*******************************\n";
     echo "Partida WORDIX " . $partidaElegida + 1 . " palabra " . cargarPartidas()[$partidaElegida]["palabraWordix"]. ". \n";
     echo "Jugador: " . cargarPartidas()[$partidaElegida]["jugador"]. ". \n";
@@ -96,7 +97,7 @@ function agregarPalabra($coleccionPalabras, $palabra){
 /**8)
  * 
  */
-function primerPartidaGanada()  {
+function primerPartidaGanadaIndice()  {
     echo "Ingrese el nombre de un jugador: ";
     $nombreJugador = trim(fgets(STDIN));
     $i = 0;
@@ -112,6 +113,22 @@ function primerPartidaGanada()  {
     }
     return $primeraGanadaIndice;
 }
+
+function primerPartidaGanada(){
+    echo "Ingrese el nombre de un jugador: ";
+    $nombreJugador = trim(fgets(STDIN));
+    echo "\n*******************************\n";
+    echo "Partida WORDIX " . $partidaElegida + 1 . " palabra " . cargarPartidas()[$partidaElegida]["palabraWordix"]. ". \n";
+    echo "Jugador: " . cargarPartidas()[$partidaElegida]["jugador"]. ". \n";
+    echo "Puntaje: " . cargarPartidas()[$partidaElegida]["puntaje"] . ". \n";
+    if(cargarPartidas()[$partidaElegida]["puntaje"] == 0){
+        echo "Intento: No adivinó la palabra. \n";
+    }else{
+        echo "Intento: Adivinó la palabra en " . cargarPartidas()[$partidaElegida]["intentos"] . " intentos.". " \n";
+    }
+    echo "\n*******************************\n";
+}
+
 
 
 /**9)
@@ -181,10 +198,10 @@ function resumenJugador(){
     }
 }
 
- /**10)
+/**10)
   * 
   */
-  function solicitarJugador(){
+function solicitarJugador(){
     echo "Ingrese el nombre de un jugador: ";
     $jugador = trim(fgets(STDIN));
     if(ctype_alpha($jugador[0])){
@@ -290,16 +307,16 @@ do {
             echo "Ingrese su nombre: ";
             $nombreJugador = trim(fgets(STDIN));
             $partidaAleatoria = rand(0, count($palabras));
+            
 
             break;
         case 3: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
+            mostrarPartida();
 
             break;
         
         case 4: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
-
+            echo primerPartidaGanada();
             break;
         
         case 5: 
