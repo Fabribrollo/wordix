@@ -6,9 +6,8 @@ include_once("wordix.php");
 /***** DATOS DE LOS INTEGRANTES *******/
 /**************************************/
 
-/* Apellido, Nombre. Legajo. Carrera. mail. Usuario Github */
-/* ****COMPLETAR***** */
-
+//Brollo Fabrizio FAI-5532 carrera TUDW fabrizio.brollo@est.fi.uncoma.edu.ar   user github: fabribrollo
+//Pizarro Fidel FAI-5554 carrera TUDW  fidelpizarro11@gmail.com   user github: fidelpizarro3
 
 /**************************************/
 /***** DEFINICION DE FUNCIONES ********/
@@ -247,13 +246,69 @@ function ordenarPartidas(){
     }
 
 
+    function verificarExiste($palabras, &$palabrasUtilizadas){
 
 
+        echo "Ingrese su nombre: ";
+        $nombreJugador = trim(fgets(STDIN));
+        $i = 0;
+        $bandera = false; 
+        $partidaAleatoria = rand(18, count($palabras));
 
-/**************************************/
-/*********** PROGRAMA PRINCIPAL *******/
-/**************************************/
+        while ($i < count($palabrasUtilizadas) && !$bandera) {
+            if ($palabrasUtilizadas[$i] == $partidaAleatoria) {
+                $bandera = true; 
+            }
+            $i++;
+        }
+    
+        if ($bandera) {
+            echo "La palabra ya fue utilizada. Intente nuevamente.\n";
+            return;
+        }
+            $partida = jugarWordix(cargarColeccionPalabras()[$indicePartida], strtolower($nombreJugador));
+        $palabrasUtilizadas[] = $indicePartida;
+        print_r($palabrasUtilizadas);
+    }
 
+/**
+ * esta funcion solicita un numero del indice de la palabra y el nombre del jugador, si el numero del indice y el nombre del jugador ya estan almacenados en el array, entonces la funcion dic que la palabra fue utilizada, y vuelve a solicitar un numero de indice de palabra
+ * @param array $palabras
+ * @param array $palabrasUtilizadas
+ * INT $numeroIngresado; $indicePartida, $i
+ * STRING $nombreJugador
+ * BOOLEAN $bandera
+ */
+    function jugarPalabra($palabras, &$palabrasUtilizadas) {
+        echo "Ingrese un numero de palabra para jugar: (1-" . count($palabras) . ") \n";
+        $numeroIngresado = solicitarNumeroEntre(1, count($palabras));
+        $indicePartida = $numeroIngresado - 1;
+        echo "Ingrese su nombre: ";
+        $nombreJugador = trim(fgets(STDIN));
+    
+        $i = 0;
+        $bandera = false; 
+        while ($i < count($palabrasUtilizadas) && !$bandera) {
+            if ($palabrasUtilizadas["indice de partida"][$i] == $indicePartida && $palabrasUtilizadas["nombre jugador"][$i] == $nombreJugador) {
+                $bandera = true; 
+            }
+            $i++;
+        }
+        if ($bandera) {
+            echo "La palabra ya fue utilizada. Intente nuevamente.\n";
+            return;
+        }
+            $partida = jugarWordix(cargarColeccionPalabras()[$indicePartida], strtolower($nombreJugador));
+        $palabrasUtilizadas["indice de partida"][] = $indicePartida;
+        $palabrasUtilizadas["nombre jugador"][] = $nombreJugador;
+        print_r($palabrasUtilizadas);
+    }
+    
+    
+    /**************************************/
+    /*********** PROGRAMA PRINCIPAL *******/
+    /**************************************/
+    
 //Declaración de variables:
 
 
@@ -290,24 +345,13 @@ do {
     $opcion=seleccionarOpcion();
     
     switch ($opcion) {
-        /**
-         * FALTA VERIFICAR QUE NO SE REPITAN PALABRAS Y FALTA GUARDAR PARTIDAS EN ARRAY;
-         */
+
         case 1: 
-            echo "Ingrese un numero de palabra para jugar: (1-" . count($palabras) . ") \n";
-            $numeroIngresado = solicitarNumeroEntre(1, count($palabras));
-            $indicePartida = $numeroIngresado -1;
-            echo "Ingrese su nombre: ";
-            $nombreJugador = trim(fgets(STDIN));
-            $partida = jugarWordix(cargarColeccionPalabras()[$indicePartida], strtolower($nombreJugador));
-            $palabrasUtilizadas[] = $indicePartida;
-            print_r($palabrasUtilizadas);
+            jugarPalabra($palabras, $palabrasUtilizadas);
+
             break;
         case 2: 
-            echo "Ingrese su nombre: ";
-            $nombreJugador = trim(fgets(STDIN));
-            $partidaAleatoria = rand(0, count($palabras));
-            
+            verificarExiste($palabras, $palabrasUtilizadas);
 
             break;
         case 3: 
@@ -341,4 +385,3 @@ do {
 
 seleccionarOpcion();
 
-?>
