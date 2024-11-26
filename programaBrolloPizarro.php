@@ -298,7 +298,6 @@ function ordenarPartidas(){
         $palabrasUtilizadas["nombreJugador"][] = $nombreJugador;
         return ["palabraWordix"=> $partida["palabraWordix"],"jugador" => $partida["jugador"], "intentos" => $partida["intentos"], "puntaje" => $partida["puntaje"]];
         }
-        print_r($palabrasUtilizadas);
 
     }
 
@@ -417,7 +416,7 @@ do {
                      echo "----Intento 6: " . $resumenJugador["intento6"] . "\n";
                      echo "*******************************\n";
          }else{
-         echo "El jugador no jugo ninguna partida\n";
+         echo "El usuario no jugo ninguna partida\n";
          }
             break;
         
