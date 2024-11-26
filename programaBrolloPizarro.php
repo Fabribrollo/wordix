@@ -303,31 +303,42 @@ function ordenarPartidas(){
 
     
     
-    function jugarAleatorio($palabras, $palabrasUtilizada){
-        echo "Ingrese su nombre: ";
-        $nombreJugador = trim(fgets(STDIN));
-        $i = 0;
-        $bandera = true; 
-        $partidaAleatoria = rand(18, count($palabras) - 1);
+    function jugarAleatorio($nombreJugador, $palabras, $partidas, &$partidasAleatoriasJugadas){
+        $partidaRepetida = false;
+        $palabraAleatoria = rand(18, count($palabras) - 1);
+        $partidasAleatoriasJugadas++;
 
-        if(count($palabrasUtilizada) > 0){
-        while ($i <= count($palabrasUtilizada) && $bandera == true)  {
-            echo "hola";
-            if ($palabrasUtilizada[$i] == $partidaAleatoria) {
-                echo "1"; 
-                $bandera = true;
-                echo "cambiando palabra";
-            }else{
-                $palabraNoRepetida = $partidaAleatoria;
-                $bandera = false; 
-            }
-            $i++;
-        }
-    }
-        $partida = jugarWordix($palabras[$partidaAleatoria], strtolower($nombreJugador));
+    
         
-        $palabrasUtilizadas[] = $partidaAleatoria;
-        print_r($palabrasUtilizadas);
+        foreach($partidas as $partida){
+            if($partida["palabraWordix"] == $palabras[$palabraAleatoria] && $partida["jugador"] == $nombreJugador){
+                $partidaRepetida = true;
+
+            }
+        }
+
+        if($partidaRepetida == true){
+            jugarAleatorio($nombreJugador, $palabras, $partidas, $partidasAleatoriasJugadas);
+        }else{
+            $partidaJugada = jugarWordix($palabras[$palabraAleatoria], strtolower($nombreJugador));
+            return $partidaJugada;
+        }
+        
+
+    //     if(count($palabrasUtilizada) > 0){
+    //     while ($i <= count($palabrasUtilizada) && $bandera == true)  {
+    //         echo "hola";
+    //         if ($palabrasUtilizada[$i] == $partidaAleatoria) {
+    //             echo "1"; 
+    //             $bandera = true;
+    //             echo "cambiando palabra";
+    //         }else{
+    //             $palabraNoRepetida = $partidaAleatoria;
+    //             $bandera = false; 
+    //         }
+    //         $i++;
+    //     }
+    // }
     }
 
 
@@ -385,8 +396,10 @@ do {
             break;
 
         case 2: 
+            $partidasAleatoriasJugadas = 0;
             echo "Ingrese su nombre: ";
             $nombreDelJugador = trim(fgets(STDIN));
+            $partidas[] = jugarAleatorio($nombreDelJugador, $palabras, $partidas, $partidasAleatoriasJugadas);
             break;
 
         case 3: 
