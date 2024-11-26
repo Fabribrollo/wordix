@@ -303,13 +303,11 @@ function ordenarPartidas(){
 
     
     
-    function jugarAleatorio($nombreJugador, $palabras, $partidas, &$partidasAleatoriasJugadas){
+    function jugarAleatorio($nombreJugador, $palabras, $partidas){
         $partidaRepetida = false;
         $palabraAleatoria = rand(18, count($palabras) - 1);
-        $partidasAleatoriasJugadas++;
 
-    
-        
+  
         foreach($partidas as $partida){
             if($partida["palabraWordix"] == $palabras[$palabraAleatoria] && $partida["jugador"] == $nombreJugador){
                 $partidaRepetida = true;
@@ -318,12 +316,13 @@ function ordenarPartidas(){
         }
 
         if($partidaRepetida == true){
-            jugarAleatorio($nombreJugador, $palabras, $partidas, $partidasAleatoriasJugadas);
+            jugarAleatorio($nombreJugador, $palabras, $partidas);
         }else{
+
             $partidaJugada = jugarWordix($palabras[$palabraAleatoria], strtolower($nombreJugador));
-            return $partidaJugada;
         }
-        
+    
+        return $partidaJugada;
 
     //     if(count($palabrasUtilizada) > 0){
     //     while ($i <= count($palabrasUtilizada) && $bandera == true)  {
@@ -396,10 +395,10 @@ do {
             break;
 
         case 2: 
-            $partidasAleatoriasJugadas = 0;
+
             echo "Ingrese su nombre: ";
             $nombreDelJugador = trim(fgets(STDIN));
-            $partidas[] = jugarAleatorio($nombreDelJugador, $palabras, $partidas, $partidasAleatoriasJugadas);
+            $partidas[] = jugarAleatorio($nombreDelJugador, $palabras, $partidas);
             break;
 
         case 3: 
