@@ -156,7 +156,9 @@ function esPalabra($cadena)
 }
 
 /**
- *  ****COMPLETAR*****
+ *  Solicita una palabra de 5 letras y si no es palabra ni mide 5 letras, vuelve a pedirlo. 
+ * STRING $palabra
+ * @return STRING $palabra
  */
 function leerPalabra5Letras()
 {
@@ -336,12 +338,28 @@ function esIntentoGanado($estructuraPalabraIntento)
 
 /**
  * ****COMPLETAR***** documentación de la intefaz
+ * Funcion que recibe como parametros la palabra jugada y el numero de intentos ocupados para ganar. dependiendo el tipo de letras de la palabra, suma determinados puntos.
+ * @param STRING $palabraWordix
+ * @param INT $nroIntento
+ * INT $puntajeTotal 
+ * @return INT
  */
-function obtenerPuntajeWordix()  /* ****COMPLETAR***** parámetros formales necesarios */
+function obtenerPuntajeWordix($palabraWordix, $nroIntento) 
 {
-
-    /* ****COMPLETAR***** cuerpo de la función*/
-    return 0;
+    $puntajeTotal = 0;
+    for ($i=0; $i < 5; $i++) { 
+        if($palabraWordix[$i] = "A" || $palabraWordix[$i] = "E" || $palabraWordix[$i] = "I" || $palabraWordix[$i] = "O" || $palabraWordix[$i] = "U"){
+        $puntajeTotal++;
+        }elseif($palabraWordix[$i] = "B" || $palabraWordix[$i] = "C" ||$palabraWordix[$i] = "D" ||$palabraWordix[$i] = "F" ||$palabraWordix[$i] = "G" ||$palabraWordix[$i] = "H" ||$palabraWordix[$i] = "J" ||$palabraWordix[$i] = "K" ||$palabraWordix[$i] = "L" ||$palabraWordix[$i] = "M"){
+        $puntajeTotal = $puntajeTotal + 2;
+        }else{
+        $puntajeTotal = $puntajeTotal + 3;
+        }
+    }
+    if($nroIntento < 6){
+        $puntajeTotal = $puntajeTotal + 7 - $nroIntento;
+    }
+    return $puntajeTotal;
 }
 
 /**
@@ -376,7 +394,7 @@ function jugarWordix($palabraWordix, $nombreUsuario)
 
     if ($ganoElIntento) {
         $nroIntento--;
-        $puntaje = obtenerPuntajeWordix();
+        $puntaje = obtenerPuntajeWordix($palabraWordix, $nroIntento);
         echo "Adivinó la palabra Wordix en el intento " . $nroIntento . "!: " . $palabraIntento . " Obtuvo $puntaje puntos!";
     } else {
         $nroIntento = 0; //reset intento

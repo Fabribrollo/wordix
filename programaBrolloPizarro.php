@@ -363,7 +363,7 @@ $palabrasUtilizadas = [];
  * return INT
  */
 function seleccionarOpcion(){
-    echo "Menu de opciones:
+    echo "\nMenu de opciones:
     1) Jugar al wordix con una palabra elegida
     2) Jugar al wordix con una palabra aleatoria
     3) Mostrar una partida
