@@ -305,24 +305,22 @@ function ordenarPartidas(){
     
     function jugarAleatorio($nombreJugador, $palabras, $partidas){
         $partidaRepetida = false;
-        $palabraAleatoria = rand(18, count($palabras) - 1);
+        print_r($partidas);
+        $palabraAleatoria = rand(18, count($palabras));
 
-  
         foreach($partidas as $partida){
             if($partida["palabraWordix"] == $palabras[$palabraAleatoria] && $partida["jugador"] == $nombreJugador){
                 $partidaRepetida = true;
-
             }
         }
 
         if($partidaRepetida == true){
-            jugarAleatorio($nombreJugador, $palabras, $partidas);
+            echo "No quedan palabras disponibles para jugar";
         }else{
-
             $partidaJugada = jugarWordix($palabras[$palabraAleatoria], strtolower($nombreJugador));
+            return $partidaJugada;
         }
     
-        return $partidaJugada;
 
     //     if(count($palabrasUtilizada) > 0){
     //     while ($i <= count($palabrasUtilizada) && $bandera == true)  {
