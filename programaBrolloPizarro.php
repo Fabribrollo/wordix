@@ -352,8 +352,8 @@ function jugarAleatorio($palabras, $partidas)
         }
         $i++;
     }
-
-    echo "\nYa no hay palabras disponibles para jugar.\n";
+if($i == count($partidas)){
+    echo "\nYa no hay palabras disponibles para jugar.\n";}
 }
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
@@ -362,6 +362,9 @@ function jugarAleatorio($palabras, $partidas)
 //Declaración de variables:
 /**
  * INT $opcion
+ * array $partidaJugada
+ * array $partidaJugadaAleatoria
+ * array $resumenJugador
  */
 
 
