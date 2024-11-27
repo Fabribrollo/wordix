@@ -353,7 +353,8 @@ function jugarAleatorio($palabras, $partidas)
         $i++;
     }
 if($i == count($partidas)){
-    echo "\nYa no hay palabras disponibles para jugar.\n";}
+    echo "\nYa no hay palabras disponibles para jugar.\n";
+}
 }
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
