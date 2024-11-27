@@ -102,8 +102,7 @@ function agregarPalabra($coleccionPalabras, $palabra){
  * @return INT
  */
 function primerPartidaGanadaIndice($partidas)  {
-    echo "Ingrese el nombre de un jugador: ";
-    $nombreJugador = trim(fgets(STDIN));
+    $nombreJugador = solicitarJugador();
     $i = 0;
     $primeraGanada = true;
     $primeraGanadaIndice = -1;
@@ -150,8 +149,7 @@ function primerPartidaGanada($indice, $partidas){
  * @return array
  */
 function resumenJugador($partidas){
-    echo "Ingrese el nombre de un jugador: ";
-    $jugador = trim(fgets(STDIN));
+    $jugador = solicitarJugador();
     $partidasJugador = 0;
     $acumPuntaje = 0;
     $acumVictorias = 0;
@@ -212,7 +210,7 @@ function resumenJugador($partidas){
     @return STRING
   */
 function solicitarJugador(){
-    echo "Ingrese el nombre de un jugador: ";
+    echo "Ingrese su nombre de jugador: ";
     $jugador = trim(fgets(STDIN));
     if(ctype_alpha($jugador[0])){
         $jugadorMinusculas = strtolower($jugador);
@@ -277,8 +275,7 @@ function ordenarPartidas($partidas){
  */
 
  function jugarPalabra($palabras, $partidas) {
-     echo "Ingrese su nombre: ";
-     $nombreJugador = trim(fgets(STDIN));
+    $nombreJugador = solicitarJugador();
     echo "Ingrese un numero de palabra para jugar:(1-" . count($palabras) . "): ";
     $numeroIngresado = solicitarNumeroEntre(1, count($palabras));
     $indicePartida = $numeroIngresado - 1;
@@ -312,32 +309,33 @@ function ordenarPartidas($partidas){
  * BOOLEAN $repetido
  * array $partida
  */
-    function jugarAleatorio($palabras, $partidas) {
-        
-        echo "Ingrese su nombre: ";
-        $nombreJugador = trim(fgets(STDIN));       
+function jugarAleatorio($palabras, $partidas) {
+    $nombreJugador = solicitarJugador();
+    $i = 0;
+    $palabraEncontrada = false;
+    $repetido = false;
+    
+    
+    while ($i < count($partidas) && !$palabraEncontrada) {
         $indiceAleatorio = rand(18, count($palabras) - 1);
-        $i = 0;
-        $repetido = false; 
 
-        while ($i < count($partidas) && !$repetido) {
-            if ($partidas[$i]["palabraWordix"] == $palabras[$indiceAleatorio] && $partidas[$i]["jugador"] == $nombreJugador) {
-                $repetido = true; 
+        foreach ($partidas as $partida) {
+            if ($partida["palabraWordix"] == $palabras[$indiceAleatorio] && $partida["jugador"] == $nombreJugador) {
+                $repetido = true;
+                break; // recorrido parcial, se encontro una coincidencia. no es necesario seguir recorriendo.
             }
-            $i++;
         }
-
-        if ($repetido == true) {
-            echo "\nYa no hay palabras disponibles para jugar.\n";
-        }else{
-        
-        $partida = jugarWordix($palabras[$indiceAleatorio], strtolower($nombreJugador));
-        return $partida;
+        if (!$repetido) {
+            $palabraEncontrada = true;
+            $partida = jugarWordix($palabras[$indiceAleatorio], strtolower($nombreJugador));
+            return $partida;
         }
-
+        $i++;
     }
 
-    
+    echo "\nYa no hay palabras disponibles para jugar.\n";
+
+}
     /**************************************/
     /*********** PROGRAMA PRINCIPAL *******/
     /**************************************/
