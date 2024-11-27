@@ -293,7 +293,7 @@ function ordenarPartidas(){
         if ($bandera) {
             echo "La palabra ya fue utilizada. Intente nuevamente.\n";
         }else{
-        $partida = jugarWordix(cargarColeccionPalabras()[$indicePartida], strtolower($nombreJugador));
+        $partida = jugarWordix($palabras[$indicePartida], strtolower($nombreJugador));
         $palabrasUtilizadas["indicePartida"][] = $indicePartida;
         $palabrasUtilizadas["nombreJugador"][] = $nombreJugador;
         return ["palabraWordix"=> $partida["palabraWordix"],"jugador" => $partida["jugador"], "intentos" => $partida["intentos"], "puntaje" => $partida["puntaje"]];
@@ -305,8 +305,7 @@ function ordenarPartidas(){
     
     function jugarAleatorio($nombreJugador, $palabras, $partidas){
         $partidaRepetida = false;
-        print_r($partidas);
-        $palabraAleatoria = rand(18, count($palabras));
+        $palabraAleatoria = rand(18, count($palabras) - 1);
 
         foreach($partidas as $partida){
             if($partida["palabraWordix"] == $palabras[$palabraAleatoria] && $partida["jugador"] == $nombreJugador){
